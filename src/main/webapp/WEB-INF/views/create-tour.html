@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo mới Tour Du Lịch</title>
+    <style>
+        .error { color: red; font-size: 0.9em; }
+        .form-group { margin-bottom: 15px; }
+        .success { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Phần mềm Quản lý Tour Du Lịch - VietTravel</h2>
+    <h3>Tạo mới Tour</h3>
+
+    <div th:if="${message != null}" class="success" th:text="${message}"></div>
+
+    <form th:action="@{/tour/create}" th:object="${tour}" method="post">
+
+        <div class="form-group">
+            <label for="tourCode">Mã Tour:</label>
+            <input type="text" id="tourCode" th:field="*{tourCode}" placeholder="VD: VN_12345" />
+            <br/>
+            <span class="error" th:if="${#fields.hasErrors('tourCode')}" th:errors="*{tourCode}">Lỗi mã</span>
+        </div>
+
+        <div class="form-group">
+            <label for="adultPrice">Giá người lớn:</label>
+            <input type="number" id="adultPrice" th:field="*{adultPrice}" />
+            <br/>
+            <span class="error" th:if="${#fields.hasErrors('adultPrice')}" th:errors="*{adultPrice}">Lỗi giá lớn</span>
+        </div>
+
+        <div class="form-group">
+            <label for="childPrice">Giá trẻ em:</label>
+            <input type="number" id="childPrice" th:field="*{childPrice}" />
+            <br/>
+            <span class="error" th:if="${#fields.hasErrors('childPrice')}" th:errors="*{childPrice}">Lỗi giá nhỏ</span>
+        </div>
+
+        <div class="form-group">
+            <label for="startDate">Ngày khởi hành:</label>
+            <input type="date" id="startDate" th:field="*{startDate}" />
+            <br/>
+            <span class="error" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Lỗi ngày đi</span>
+        </div>
+
+        <div class="form-group">
+            <label for="endDate">Ngày kết thúc:</label>
+            <input type="date" id="endDate" th:field="*{endDate}" />
+            <br/>
+            <span class="error" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">Lỗi ngày về</span>
+        </div>
+
+        <button type="submit">Submit Form</button>
+    </form>
+</body>
+</html>
+
